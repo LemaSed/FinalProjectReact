@@ -39,6 +39,18 @@ namespace FinalProjectReact
 			services.AddAuthentication()
 				.AddIdentityServerJwt();
 
+			services.AddAuthentication()
+				.AddGoogle(options =>
+				{
+					options.ClientId = Configuration["App:GoogleClientId"];
+					options.ClientSecret = Configuration["App:GoogleClientSecret"];
+				})
+				.AddFacebook(options =>
+				{
+					options.AppId = Configuration["App:FacebookClientId"];
+					options.ClientSecret = Configuration["App:FacebookClientSecret"];
+				});
+
 			services.AddControllersWithViews();
 			services.AddRazorPages();
 
